@@ -68,3 +68,17 @@ CREATE TABLE IF NOT EXISTS itens_pedido (
     FOREIGN KEY (plantas_id) REFERENCES plantas(id),
     FOREIGN KEY (pedidos_id) REFERENCES pedidos(id)
 );
+
+CREATE TABLE IF NOT EXISTS formas_pagamento (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE pagamentos (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    pedidos_id INT NOT NULL,
+    formas_pagamento_id INT NOT NULL,
+    valor DECIMAL(10, 2) NOT NULL DEFAULT 0,
+    FOREIGN KEY (pedidos_id) REFERENCES pedidos(id),
+    FOREIGN KEY (formas_pagamento_id) REFERENCES formas_pagamento(id)   
+);
